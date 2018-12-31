@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,7 +47,8 @@ public class AuditorSrvImpl implements AuditorSrv, Mapper {
         logger.debug("add user started:", user);
         com.softideas.entities.User userEntity = userMapperToEntity(user);
         logger.debug("finding role by code :{}", user.getRole());
-        Role role = roleRepository.findById(user.getRole()).get();
+        Role role = roleRepository.findById(user.getRole())
+                .orElseThrow(() -> new EntityNotFoundException(String.format("role: %s not found", user.getRole())));
         logger.debug("role:{}", role);
         userEntity.setRole(role);
         logger.debug("convert domain into entity ", userEntity);
