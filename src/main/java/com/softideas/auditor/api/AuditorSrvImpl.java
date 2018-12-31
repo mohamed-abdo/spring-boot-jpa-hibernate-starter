@@ -45,9 +45,8 @@ public class AuditorSrvImpl implements AuditorSrv, Mapper {
     public String addUser(User user) {
         logger.debug("add user started:", user);
         com.softideas.entities.User userEntity = userMapperToEntity(user);
-        String roleCode = "ADMIN";
-        logger.debug("finding role by code :{}", roleCode);
-        Role role = roleRepository.findById(roleCode).get();
+        logger.debug("finding role by code :{}", user.getRole());
+        Role role = roleRepository.findById(user.getRole()).get();
         logger.debug("role:{}", role);
         userEntity.setRole(role);
         logger.debug("convert domain into entity ", userEntity);

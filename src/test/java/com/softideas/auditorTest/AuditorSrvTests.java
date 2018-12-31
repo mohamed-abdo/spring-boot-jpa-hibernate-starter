@@ -45,7 +45,7 @@ public class AuditorSrvTests {
         User user = new User();
         user.setId(UUID.randomUUID());
         user.setName("mohamed.abdo");
-        user.setRole("admin");
+        user.setRole("ADMIN");
         String userId = auditorSrv.addUser(user);
         Assert.assertNotNull(userId);
     }
