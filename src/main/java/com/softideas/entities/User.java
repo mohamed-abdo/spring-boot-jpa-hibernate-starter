@@ -1,17 +1,18 @@
-package com.softideas.auditor.entity;
+package com.softideas.entities;
 
 import org.hibernate.envers.Audited;
-
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.UUID;
 
-@Audited
 @Entity
+@Audited
 @Table(name = "USERS")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column(name="NAME")
+    private UUID id;
+    @Column(name = "NAME")
     private String name;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ROLE_CODE")
@@ -33,11 +34,11 @@ public class User {
         this.role = role;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

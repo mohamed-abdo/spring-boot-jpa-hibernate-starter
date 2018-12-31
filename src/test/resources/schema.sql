@@ -6,7 +6,7 @@ CREATE TABLE ROLE (
 );
 
 CREATE TABLE USERS (
-                     ID INT NOT NULL,
+                     ID UUID PRIMARY KEY,
                      NAME VARCHAR (50) NOT NULL ,
                      ROLE_CODE VARCHAR (10) NOT NULL,
                      PRIMARY KEY (ID),

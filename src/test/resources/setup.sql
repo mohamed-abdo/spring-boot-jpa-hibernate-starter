@@ -5,10 +5,10 @@
  values ('ADMIN','admin','admin user role');
 --
 insert into users(id,name,ROLE_CODE)
- values (1,'mohamed abdo','ADMIN');
+ values (RANDOM_UUID(),'mohamed.abdo','ADMIN');
 --
  insert into users(id,name,ROLE_CODE)
- values (2,'ahmed abdo','DEFAULT');
+ values (RANDOM_UUID(),'ahmed abdo','DEFAULT');
 --
  insert into users(id,name,ROLE_CODE)
- values (3,'omar abdo','DEFAULT');
+ values (RANDOM_UUID(),'omar abdo','DEFAULT');

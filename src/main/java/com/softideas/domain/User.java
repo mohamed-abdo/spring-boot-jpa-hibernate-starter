@@ -2,18 +2,19 @@ package com.softideas.domain;
 
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class User implements Serializable {
 
-    private Long id;
+    private UUID id;
     private String name;
     private String role;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

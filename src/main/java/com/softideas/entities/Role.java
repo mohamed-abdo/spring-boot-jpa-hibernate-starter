@@ -1,18 +1,17 @@
-package com.softideas.auditor.entity;
+package com.softideas.entities;
 
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import java.io.Serializable;
 
 import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
 
 @Entity
 @Table(name = "ROLE")
 @Audited(targetAuditMode = NOT_AUDITED)
-public class Role {
+public class Role implements Serializable{
     @Id
     @Column(name = "CODE")
     private String code;

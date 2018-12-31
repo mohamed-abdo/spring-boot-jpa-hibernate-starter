@@ -1,10 +1,20 @@
 package com.softideas.auditor.repository;
 
-import com.softideas.auditor.entity.User;
+import com.softideas.entities.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+import java.util.Collection;
+import java.util.UUID;
 
+@Repository
+public interface UserRepository extends CrudRepository<User, UUID> {
+    Collection<User> findByName(String name);
+
+    @Query("select u from User u where u.role.code like :role")
+    Collection<User> findByRoleCode(@Param("role") String roleCode);
+
+    Integer deleteByNameIgnoreCase(String username);
 }
