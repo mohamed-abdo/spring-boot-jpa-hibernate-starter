@@ -3,6 +3,7 @@ package com.softideas.auditorTest;
 import com.softideas.auditor.api.AuditorSrv;
 import com.softideas.domain.Role;
 import com.softideas.domain.User;
+import com.softideas.entities.RoleCode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -80,10 +81,9 @@ public class AuditorSrvTests {
 
     @Test
     public void testGetUsersByRole() {
-        String roleCode = "ADMIN";
-        Collection<User> users = auditorSrv.getUsersByRoleCode(roleCode);
+        Collection<User> users = auditorSrv.getUsersByRoleCode(RoleCode.ADMIN);
         Assert.assertTrue(users.size() > 0);
-        Assert.assertTrue(users.stream().anyMatch(u -> u.getRole().equalsIgnoreCase(roleCode)));
+        Assert.assertTrue(users.stream().anyMatch(u -> u.getRole().equalsIgnoreCase(RoleCode.ADMIN.getRole())));
     }
 
     @Test

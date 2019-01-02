@@ -3,6 +3,7 @@ package com.softideas.functors;
 
 import com.softideas.domain.User;
 import com.softideas.entities.Role;
+import com.softideas.entities.RoleCode;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.lang.reflect.InvocationTargetException;
@@ -46,7 +47,7 @@ public interface Mapper {
                 break;
         }
         Role role = new Role();
-        role.setCode(code);
+        role.setCode(RoleCode.fromRoleType(code));
         role.setName(roleName);
         return role;
     }

@@ -1,5 +1,5 @@
 CREATE TABLE ROLE (
-                    CODE VARCHAR (10) NOT NULL,
+                    CODE INTEGER NOT NULL,
                     NAME VARCHAR (50) NOT NULL,
                     DESCRIPTION VARCHAR (255) NULL,
                     PRIMARY KEY (CODE)

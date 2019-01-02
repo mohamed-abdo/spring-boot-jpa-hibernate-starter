@@ -14,17 +14,17 @@ import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
 public class Role implements Serializable{
     @Id
     @Column(name = "CODE")
-    private String code;
+    private RoleCode code;
     @Column(name = "NAME")
     private String name;
     @Column(name = "DESCRIPTION")
     private String description;
 
-    public String getCode() {
+    public RoleCode getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(RoleCode code) {
         this.code = code;
     }
 

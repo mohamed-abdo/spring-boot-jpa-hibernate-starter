@@ -4,13 +4,14 @@ import com.softideas.auditor.repository.RoleRepository;
 import com.softideas.auditor.repository.UserRepository;
 import com.softideas.domain.User;
 import com.softideas.entities.Role;
+import com.softideas.entities.RoleCode;
 import com.softideas.functors.Mapper;
 import org.hibernate.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@Service
+@Component
 @Transactional
 @EnableJpaRepositories(basePackages = {"com.softideas.auditor.repository"})
 public class AuditorSrvImpl implements AuditorSrv, Mapper {
@@ -47,7 +48,7 @@ public class AuditorSrvImpl implements AuditorSrv, Mapper {
         logger.debug("add user started:", user);
         com.softideas.entities.User userEntity = userMapperToEntity(user);
         logger.debug("finding role by code :{}", user.getRole());
-        Role role = roleRepository.findById(user.getRole())
+        Role role = roleRepository.findByCode(RoleCode.fromRoleType(user.getRole()))
                 .orElseThrow(() -> new EntityNotFoundException(String.format("role: %s not found", user.getRole())));
         logger.debug("role:{}", role);
         userEntity.setRole(role);
@@ -60,13 +61,13 @@ public class AuditorSrvImpl implements AuditorSrv, Mapper {
     @Override
     public String addRole(com.softideas.domain.Role role) {
         Role roleEntity = roleMapperToEntity(role.getCode());
-        roleEntity.setCode(role.getCode());
+        roleEntity.setCode(RoleCode.fromRoleType(role.getCode()));
         roleEntity.setName(role.getName());
         roleEntity.setDescription(role.getDescription());
         logger.debug("Starting adding role entity: {}", roleEntity);
         Role result = roleRepository.save(roleEntity);
         logger.debug("Finished adding role: {}", result);
-        return result.getCode();
+        return result.getCode().getRole();
     }
 
     @Override
@@ -92,7 +93,7 @@ public class AuditorSrvImpl implements AuditorSrv, Mapper {
     }
 
     @Override
-    public Collection<User> getUsersByRoleCode(String roleCode) {
+    public Collection<User> getUsersByRoleCode(RoleCode roleCode) {
         logger.debug("start finding users by role code: {}", roleCode);
         Collection<User> result = userRepository.findByRoleCode(roleCode)
                 .stream()

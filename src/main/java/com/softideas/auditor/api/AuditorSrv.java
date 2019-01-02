@@ -2,6 +2,7 @@ package com.softideas.auditor.api;
 
 import com.softideas.domain.Role;
 import com.softideas.domain.User;
+import com.softideas.entities.RoleCode;
 
 import java.util.Collection;
 
@@ -16,7 +17,7 @@ public interface AuditorSrv {
 
     User updateUser(User user);
 
-    Collection<User> getUsersByRoleCode(String roleCode);
+    Collection<User> getUsersByRoleCode(RoleCode roleCode);
 
     boolean deleteUser(String username);
 }
