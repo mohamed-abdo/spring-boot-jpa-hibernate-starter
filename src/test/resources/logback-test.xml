@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="10 seconds">
-    <property name="LOG_PATH" value="apps/auditor_log"/>
+    <property name="LOG_PATH" value="logs/auditor_log"/>
     <property name="MAX_FILE_SIZE" value="10MB"/>
     <property name="LOG_PATTERN" value="%d{&quot;dd-MM-yy HH:mm:ss,SSS&quot;} [%thread] %-1level [%X{clientId}] %class{36}.%M:%L - %msg%n"/>
     <property name="ZIP_PATTERN" value="%i.zip"/>
