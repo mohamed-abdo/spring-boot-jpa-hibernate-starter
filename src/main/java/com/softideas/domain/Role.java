@@ -3,6 +3,7 @@ package com.softideas.domain;
 import java.io.Serializable;
 
 public class Role implements Serializable {
+    private static final long serialVersionUID = 4554654737119876036L;
     private String code;
     private String name;
     private String description;
