@@ -13,7 +13,7 @@ public enum RoleCode {
         return role;
     }
 
-    public static RoleCode fromRoleType(String role) {
+    public static RoleCode fromStringRole(String role) {
         switch (role) {
             case "ADMIN":
                 return RoleCode.ADMIN;

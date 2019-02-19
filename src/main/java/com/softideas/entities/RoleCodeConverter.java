@@ -13,6 +13,6 @@ public class RoleCodeConverter implements AttributeConverter<RoleCode, String> {
 
     @Override
     public RoleCode convertToEntityAttribute(String role) {
-        return RoleCode.fromRoleType(role);
+        return RoleCode.fromStringRole(role);
     }
 }

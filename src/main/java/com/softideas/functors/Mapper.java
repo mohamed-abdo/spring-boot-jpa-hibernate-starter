@@ -47,7 +47,7 @@ public interface Mapper {
                 break;
         }
         Role role = new Role();
-        role.setCode(RoleCode.fromRoleType(code));
+        role.setCode(RoleCode.fromStringRole(code));
         role.setName(roleName);
         return role;
     }

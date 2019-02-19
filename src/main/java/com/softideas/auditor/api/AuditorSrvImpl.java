@@ -48,7 +48,7 @@ public class AuditorSrvImpl implements AuditorSrv, Mapper {
         logger.debug("add user started:", user);
         com.softideas.entities.User userEntity = userMapperToEntity(user);
         logger.debug("finding role by code :{}", user.getRole());
-        Role role = roleRepository.findByCode(RoleCode.fromRoleType(user.getRole()))
+        Role role = roleRepository.findByCode(RoleCode.fromStringRole(user.getRole()))
                 .orElseThrow(() -> new EntityNotFoundException(String.format("role: %s not found", user.getRole())));
         logger.debug("role:{}", role);
         userEntity.setRole(role);
@@ -61,7 +61,7 @@ public class AuditorSrvImpl implements AuditorSrv, Mapper {
     @Override
     public String addRole(com.softideas.domain.Role role) {
         Role roleEntity = roleMapperToEntity(role.getCode());
-        roleEntity.setCode(RoleCode.fromRoleType(role.getCode()));
+        roleEntity.setCode(RoleCode.fromStringRole(role.getCode()));
         roleEntity.setName(role.getName());
         roleEntity.setDescription(role.getDescription());
         logger.debug("Starting adding role entity: {}", roleEntity);
